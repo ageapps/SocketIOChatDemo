@@ -1,0 +1,33 @@
+<!-- WHOLE APP FRAME -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ../templates/head %>
+        <link rel="stylesheet" href="/stylesheets/chat_style.css">
+    </head>
+
+    <body>
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off"/>
+            <button>Send</button>
+        </form>
+
+        <footer>
+            <% include ../templates/footer %>
+        </footer>
+        <% include ../templates/scripts %>
+        <script src="/socket/socket.io.js"></script>
+        <script>
+            var socket = io();
+            $('form').submit(function() {
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg) {
+                $('#messages').append($('<li>').text(msg));
+            });
+        </script>
+    </body>
+</html>

@@ -1,11 +1,20 @@
+<!-- WHOLE APP FRAME -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+    <% include ../views/templates/head %>
+</head>
+
+<body>
+    <section>
+
+      <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+
+    </section>
+    <footer>
+        <% include ../views/templates/footer %>
+    </footer>
+    <% include ../views/templates/scripts %>
+</body>
 </html>
