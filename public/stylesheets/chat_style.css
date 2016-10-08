@@ -3,36 +3,99 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font: 13px Helvetica, Arial;
+    color: #757575;
 }
-form {
-    background: #000;
+
+#chat_input {
+    background: #fff;
     padding: 3px;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-form input {
+
+#chat_input input {
     border: 0;
     padding: 10px;
     width: 90%;
+    color: #757575;
+    border: 3px solid #FF5727;
+    border-radius: 5px;
+    background-color: #fff;
     margin-right: 0.5%;
 }
-form button {
-    width: 9%;
-    background: rgb(130, 224, 255);
-    border: none;
+
+section h1 {
+    text-align: center;
+}
+
+#chat_input button {
+    width: 8%;
+    background-color: #FF5722;
+    color: #fff border: none;
     padding: 10px;
 }
+
 #messages {
     list-style-type: none;
-    margin: 0;
     padding: 0;
+    margin-bottom: 80px;
+    min-height: 1000px;
+    border: 3px solid #FF5727;
+    border-radius: 5px;
 }
+
 #messages li {
     padding: 5px 10px;
 }
+
 #messages li:nth-child(odd) {
     background: #eee;
+}
+
+.btn-primary, .btn-def, .panel-primary>.panel-heading {
+    background-image: linear-gradient(to bottom, #FF5727 0%, #FF5722 100%);
+    border-color: #FF5727;
+    color: #fff
+}
+
+.btn-primary:hover, .btn-def:hover, .btn-primary:focus, .btn-def:focus, .btn-primary:active, .btn-def:active {
+    background-image: linear-gradient(to bottom, #E64A19 0%, #E64A19 100%);
+    border-color: #E64A19;
+    background-position: 0;
+    color: #fff
+}
+
+.panel-primary {
+    border-color: #FF5727;
+}
+.panel-dark{
+  border-color: #757575;
+}
+.panel-dark >.panel-heading  {
+    text-align: right;
+    background-image: linear-gradient(to bottom, #BDBDBD 0%, #BDBDBD 100%);
+}
+.panel-dark .panel-body  {
+    text-align: right;
+}
+
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+    width: 50%;
+    height: 50%;
+    min-width: 200px;
+    max-width: 400px;
+    padding: 40px;
 }

@@ -3,18 +3,104 @@
 <html>
 <head>
     <% include ../views/templates/head %>
+    <link rel="stylesheet" href="/stylesheets/chat_style.css">
 </head>
 
 <body>
-    <section>
+    <section class="container">
 
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
+      <h1>Welcome to <%= title %></h1>
+
+
+      <div class="chat_container">
+        <div class="panel panel-default panel-dark">
+          <div class="panel-body ">
+            People connected
+            <span class="badge"id="users_connected"><%= number_connected %></span>
+          </div>
+        </div>
+        <ul id="messages" class="chat"></ul>
+      </div>
+
+
+
+
+
+    <div class="container" id="login_container">
+      <div class="row">
+        <div class="Absolute-Center is-Responsive">
+          <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <h3>Enter your Name</h3>
+            <form action="" id="login_form">
+              <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input class="form-control" type="text" id="user" placeholder="..."/>
+              </div>
+              <div class="form-group">
+                <button type="submit button" class="btn btn-def btn-block">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     </section>
-    <footer>
-        <% include ../views/templates/footer %>
-    </footer>
+
+    <form class="chat_container form-inline" id="chat_input" action="">
+        <input id="m" autocomplete="off" placeholder="Escribe un mensaje..."/>
+        <button type="submit button" class="btn btn-primary btn-md">Send</button>
+    </form>
+
+
     <% include ../views/templates/scripts %>
+
+    <script src="/socket/socket.io.js"></script>
+    <script type="text/javascript">
+
+      $(function() {
+        $('#login_container').show();
+        $('.chat_container').hide();
+        });
+</script>
+
+  <script type="text/javascript">
+  var myName = "";
+    var socket = io();
+    $('#login_form').submit(function() {
+      if ($('#user').val() && ($('#user').val() != "")) {
+        socket.emit('new user', $('#user').val());
+        myName = $('#user').val();
+        $('#user').val('');
+        $('#login_container').hide();
+        $('.chat_container').show();
+        }
+      return false;
+    });
+
+    $('#chat_input').submit(function() {
+      if ($('#m').val() && $('#m').val() != "") {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+      }
+      return false;
+    });
+
+    socket.on('connection on off', function(number) {
+      $('#users_connected').text(number);
+    });
+
+    socket.on('chat message', function(msg, name) {
+      var panelType = "";
+      if (name != myName) {
+        panelType = "panel-dark"
+      }
+        $('#messages').append('<li> <div class=\"panel panel-primary ' + panelType +'\"> '+
+        '<div class=\"panel-heading\">'+ name +
+        '</div><div class=\"panel-body\">' + msg + '</div></div> </li>');
+    });
+    </script>
+
 </body>
 </html>
