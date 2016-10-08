@@ -4,10 +4,16 @@
   "private": true,
   "description": "my first socket.io app",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "engines": {
+    "node": "^6.2.x",
+    "npm": "3.10.x"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
+    "bower": "^1.7.9",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
