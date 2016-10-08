@@ -195,6 +195,10 @@ li {
     text-align: left;
 }
 
+.panel-default {
+    width: 100%;
+}
+
 @media (max-width: 650px) {
     #chat_input button, #chat_input input {
         width: 100%;
