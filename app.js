@@ -80,7 +80,12 @@ app.io.on('connection', function(socket) {
 
     socket.on('chat message', function(msg) {
         console.log('chat message: ' + msg);
-        app.io.emit('chat message', msg, app.users.get(socket));
+        socket.broadcast.emit('chat message', msg, app.users.get(socket));
+    });
+
+    socket.on('typing', function(isTyping, name) {
+        console.log('User: ' + name + " is typing " + isTyping);
+        socket.broadcast.emit('typing', isTyping, name);
     });
 
     socket.on('new user', function(user) {

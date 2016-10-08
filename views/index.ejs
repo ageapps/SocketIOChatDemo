@@ -13,13 +13,19 @@
 
 
       <div class="chat_container">
-        <div class="panel panel-default panel-dark">
-          <div class="panel-body ">
+        <div class="panel panel-default panel-dark container">
+          <div class="panel-body pannel-body-left col-xs-6 ">
+            <strong id="user_name"></strong>
+          </div>
+          <div class="panel-body pannel-body-right col-xs-6 ">
+            <small id="user_typing"></small>
             People connected
             <span class="badge"id="users_connected"><%= number_connected %></span>
           </div>
         </div>
-        <ul id="messages" class="chat"></ul>
+        <div id="messages_container">
+          <ul id="messages"></ul>
+        </div>
       </div>
 
 
@@ -72,6 +78,7 @@
       if ($('#user').val() && ($('#user').val() != "")) {
         socket.emit('new user', $('#user').val());
         myName = $('#user').val();
+        $('#user_name').text(myName);
         $('#user').val('');
         $('#login_container').hide();
         $('.chat_container').show();
@@ -82,6 +89,7 @@
     $('#chat_input').submit(function() {
       if ($('#m').val() && $('#m').val() != "") {
         socket.emit('chat message', $('#m').val());
+        appendMessage(true,$('#m').val());
         $('#m').val('');
       }
       return false;
@@ -92,14 +100,57 @@
     });
 
     socket.on('chat message', function(msg, name) {
-      var panelType = "";
-      if (name != myName) {
-        panelType = "panel-dark"
-      }
-        $('#messages').append('<li> <div class=\"panel panel-primary ' + panelType +'\"> '+
-        '<div class=\"panel-heading\">'+ name +
-        '</div><div class=\"panel-body\">' + msg + '</div></div> </li>');
+        appendMessage(false,msg,name);
     });
+
+    socket.on('typing', function(isTyping, name) {
+      var text = ""
+      if (isTyping) {
+        text = name + " is typing..."
+      }
+      $('#user_typing').text(text);
+    });
+
+    function appendMessage(mine , msg, name) {
+      var panelType = "";
+      var person = "me";
+      if (!mine) {
+        panelType = "_dark";
+        person = name;
+      }
+      $('#messages').append('<li class=\"'+ panelType+'\"> <div class=\"direct-chat-text' + panelType +'\"><h5>'+ person +'</h5>'+
+      '<p>' + msg + '</p></div></li>')
+        // $('#messages').append('<li>'+ msg +'</li>')
+        // $('#messages').append('<li> <div class=\"panel panel-primary ' + panelType +'\"> '+
+        // '<div class=\"panel-heading\">'+ name +
+        // '</div><div class=\"panel-body\">' + msg + '</div></div> </li>');
+
+    }
+
+    //setup before functions
+var typingTimer;                //timer identifier
+var doneTypingInterval = 3000;  //time in ms, 5 second for example
+var $input = $('#m');
+
+//on keyup, start the countdown
+$input.on('keyup', function () {
+  clearTimeout(typingTimer);
+  typingTimer = setTimeout(doneTyping, doneTypingInterval);
+});
+
+//on keydown, clear the countdown
+$input.on('keydown', function () {
+  socket.emit("typing", true, myName);
+  clearTimeout(typingTimer);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+  socket.emit("typing", false, myName);
+}
+
+
+
     </script>
 
 </body>
