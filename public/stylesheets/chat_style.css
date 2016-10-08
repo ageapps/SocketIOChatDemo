@@ -55,6 +55,7 @@ section h1 {
     padding: 5px 10px;
 }
 
+
 /*#messages li:nth-child(odd) {
     background: #eee;
 }*/
@@ -164,8 +165,8 @@ li {
     position: relative;
 }
 
-._dark{
-  text-align: right;
+._dark {
+    text-align: right;
 }
 
 .direct-chat-text_dark::after, .direct-chat-text_dark::before {
@@ -186,9 +187,16 @@ li {
     width: 0;
 }
 
-.panel-body{
-  display: inline-block;
+.panel-body {
+    display: inline-block;
 }
-.panel .pannel-body-left{
-  text-align: left;
+
+.panel .pannel-body-left {
+    text-align: left;
+}
+
+@media (max-width: 650px) {
+    #chat_input button, #chat_input input {
+        width: 100%;
+    }
 }
