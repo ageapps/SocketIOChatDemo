@@ -100,11 +100,11 @@ section h1 {
 }
 
 .Absolute-Center.is-Responsive {
-    width: 50%;
+    /*width: 50%;*/
     height: 50%;
     min-width: 200px;
     max-width: 400px;
-    padding: 40px;
+    padding: 20px;
 }
 
 .chat_heading, strong {
@@ -202,5 +202,8 @@ li {
 @media (max-width: 650px) {
     #chat_input button, #chat_input input {
         width: 100%;
+    }
+    .panel .panel-body{
+      text-align: center;
     }
 }
