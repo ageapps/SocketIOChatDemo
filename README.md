@@ -13,7 +13,6 @@ Web application developed to show a demo using *socket.io* library, built in *no
 $ git clone https://github.com/ageapps/SocketIOChatDemo.git
 $ cd SocketIOChatDemo
 $ npm install
-$ bower install
 $ npm start
 // connect in your browser to http://localhost:4000
 ```

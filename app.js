@@ -84,7 +84,7 @@ app.io.on('connection', function(socket) {
     });
 
     socket.on('typing', function(isTyping, name) {
-        console.log('User: ' + name + " is typing " + isTyping);
+        //console.log('User: ' + name + " is typing " + isTyping);
         socket.broadcast.emit('typing', isTyping, name);
     });
 

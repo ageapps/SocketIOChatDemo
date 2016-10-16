@@ -3,7 +3,11 @@
 <html>
 <head>
     <% include ../views/templates/head %>
-    <link rel="stylesheet" href="/stylesheets/chat_style.css">
+    <style media="screen">
+      .chat_container{
+        display: none;
+      }
+    </style>
 </head>
 
 <body>
@@ -65,10 +69,6 @@
     <script src="/socket/socket.io.js"></script>
     <script type="text/javascript">
 
-      $(function() {
-        $('#login_container').show();
-        $('.chat_container').hide();
-        });
 </script>
 
   <script type="text/javascript">
@@ -80,8 +80,7 @@
         myName = $('#user').val();
         $('#user_name').text(myName);
         $('#user').val('');
-        $('#login_container').hide();
-        $('.chat_container').show();
+        showLogin(false);
         }
       return false;
     });
@@ -124,6 +123,17 @@
         // $('#messages').append('<li> <div class=\"panel panel-primary ' + panelType +'\"> '+
         // '<div class=\"panel-heading\">'+ name +
         // '</div><div class=\"panel-body\">' + msg + '</div></div> </li>');
+
+    }
+
+    function showLogin(show){
+      if (show) {
+        $(".chat_container").css("display", "none");
+        $("#login_container").css("display", "block");
+      } else {
+        $(".chat_container").css("display", "block");
+        $("#login_container").css("display", "none");
+      }
 
     }
 
