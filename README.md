@@ -5,6 +5,8 @@ Web application developed to show a demo using *socket.io* library, built in *no
 
 ## Demo
 
+Yo can find a demo, working [here]
+
 ![demo](./chat_demo.gif)
 
 ## Usage
@@ -28,10 +30,10 @@ $ npm start
 + [jQuery]: front-end JS library
 
 
+[here]: https://ageapps-socket-io-chat-demo.herokuapp.com
 [socket.io]: http://socket.io
 [node.js]:http://nodejs.org
 [jQuery]:http://jquery.com
-[nodemailer]:http://www.nodemailer.com/
 [express]:http://expressjs.com
 [bower]:http://bower.io
 [Bootstrap]:http://getbootstrap.com
