@@ -30,8 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // static imports
 //  (web).../assets  == /bower_components (server)
-app.use('/assets', express.static(__dirname + '/bower_components'));
-app.use('/socket', express.static(__dirname + '/node_modules/socket.io-client/'));
+app.use('/assets', express.static(path.join(__dirname, 'bower_components')));
 
 
 app.use(function (req, res, next) {
